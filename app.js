@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 })
 
 // richiamo il file delle rotte
-app.use("/movies", moviesRouter)
+app.use("/api/movies", moviesRouter)
 
 app.listen(port, () => {
     console.log(`Esempio di applicazione in ascolto sulla porta ${port}`)
