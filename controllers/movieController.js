@@ -52,6 +52,12 @@ function show(req, res) {
         // recupero il film
         const movie = movieResults[0];
 
+        // genero il percorso immagine basato sul titolo        
+        const formattedTitle = movie.title.toLowerCase().replace(/\s+/g, '_');
+
+        // aggiungo l'immagine al film
+        movie.image = req.imagePath + formattedTitle + ".jpg";
+
         // se è andata bene, eseguiamo la seconda query per le reviews
         connection.query(reviewsSql, [id], (err, reviewsResults) => {
             if (err) return res.status(500).json({ error: 'Database query failed' });
