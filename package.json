@@ -1,0 +1,25 @@
+{
+  "name": "webapp-express",
+  "version": "1.0.0",
+  "description": "WebApp BE",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "watch": "node --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giovannidibello/webapp-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giovannidibello/webapp-express/issues"
+  },
+  "homepage": "https://github.com/giovannidibello/webapp-express#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.13.0"
+  }
+}
