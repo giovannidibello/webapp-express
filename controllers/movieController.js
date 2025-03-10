@@ -17,6 +17,36 @@ function index(req, res) {
 // show
 function show(req, res) {
 
+    // recupero l'id dall' URL e trasformiamolo in numero
+    const id = parseInt(req.params.id)
+
+    // preparo la query per il film
+    const movieSql = 'SELECT * FROM movies WHERE id = ?';
+
+    // preparo la query per le rewiews
+    const reviewsSql = `
+    SELECT *
+    FROM reviews    
+    WHERE movie_id = ?
+    `;
+
+    // query per il film
+    connection.query(movieSql, [id], (err, movieResults) => {
+        if (err) return res.status(500).json({ error: 'Database query failed' });
+        if (movieResults.length === 0) return res.status(404).json({ error: 'Movie not found' });
+
+        // recupero il film
+        const movie = movieResults[0];
+
+        // se è andata bene, eseguiamo la seconda query per le reviews
+        connection.query(reviewsSql, [id], (err, reviewsResults) => {
+            if (err) return res.status(500).json({ error: 'Database query failed' });
+
+            // aggiungo le reviews al film
+            movie.reviews = reviewsResults;
+            res.json(movie);
+        });
+    });
 
 }
 
