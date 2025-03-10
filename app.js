@@ -7,6 +7,12 @@ const port = process.env.PORT;
 // importo il file delle rotte
 const moviesRouter = require('./routers/movieRouter');
 
+// importo middleware di gestione errore server
+const errorsHandler = require("./middlewares/errorsHandler");
+
+// importo il middleware di gestione errore 404
+const notFound = require("./middlewares/notFound");
+
 // importo il middleware di gestione path imgs
 const imagePathMiddleware = require('./middlewares/imagePath');
 
@@ -28,6 +34,12 @@ app.get('/', (req, res) => {
 
 // richiamo il file delle rotte
 app.use("/api/movies", moviesRouter)
+
+// utilizzo middleware di gestione errore server
+app.use(errorsHandler);
+
+// utilizzo middleware di gestione not found 404
+app.use(notFound);
 
 app.listen(port, () => {
     console.log(`Esempio di applicazione in ascolto sulla porta ${port}`)
