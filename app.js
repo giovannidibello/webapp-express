@@ -7,8 +7,14 @@ const port = 3000;
 // importo il file delle rotte
 const moviesRouter = require('./routers/movieRouter');
 
+// importo il middleware di gestione path imgs
+const imagePathMiddleware = require('./middlewares/imagePath');
+
 // middleware file statici cartella public
 app.use(express.static('public'));
+
+// registro il middleware di path imgs
+app.use(imagePathMiddleware);
 
 // middleware CORS
 // app.use(cors());
