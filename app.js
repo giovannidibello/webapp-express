@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT;
-// const cors = require("cors");
+const cors = require("cors");
 
 // importo il file delle rotte
 const moviesRouter = require('./routers/movieRouter');
@@ -23,7 +23,7 @@ app.use(express.static('public'));
 app.use(imagePathMiddleware);
 
 // middleware CORS
-// app.use(cors());
+app.use(cors({ origin: process.env.FE_APP }));
 
 // registro il body-parser
 app.use(express.json());
