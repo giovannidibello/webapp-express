@@ -15,11 +15,9 @@ function index(req, res) {
 
         const movies = results.map(movie => {
 
-            const formattedTitle = movie.title.toLowerCase().replace(/\s+/g, '_');
-
             return {
                 ...movie,
-                image: req.imagePath + formattedTitle + ".jpg"
+                image: req.imagePath + movie.image
             }
 
 
@@ -52,11 +50,8 @@ function show(req, res) {
         // recupero il film
         const movie = movieResults[0];
 
-        // genero il percorso immagine basato sul titolo        
-        const formattedTitle = movie.title.toLowerCase().replace(/\s+/g, '_');
-
         // aggiungo l'immagine al film
-        movie.image = req.imagePath + formattedTitle + ".jpg";
+        movie.image = req.imagePath + movie.image
 
         // se è andata bene, eseguiamo la seconda query per le reviews
         connection.query(reviewsSql, [id], (err, reviewsResults) => {
