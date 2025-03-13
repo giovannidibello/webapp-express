@@ -14,6 +14,9 @@ router.get('/:id', movieController.show);
 // store
 router.post('/', movieController.store);
 
+// store review
+router.post('/:id/reviews', movieController.storeReview);
+
 // update
 router.put('/:id', movieController.update);
 
