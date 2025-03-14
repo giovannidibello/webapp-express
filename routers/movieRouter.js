@@ -2,6 +2,9 @@
 const express = require('express')
 const router = express.Router();
 
+// impormo il middelware della gestione file
+const upload = require('../middlewares/multer');
+
 // importo le funzioni del controller
 const movieController = require("../controllers/movieController");
 
@@ -11,8 +14,8 @@ router.get('/', movieController.index);
 // show
 router.get('/:id', movieController.show);
 
-// store
-router.post('/', movieController.store);
+// store movie
+router.post('/', upload.single('image'), movieController.store);
 
 // store review
 router.post('/:id/reviews', movieController.storeReview);
